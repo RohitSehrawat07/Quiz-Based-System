@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bright Future</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><span class="logo-icon">⭐</span> Bright Future</div>
+    <div class="top-pill">🎈 Learn • Play • Grow</div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <span class="eyebrow">✨ YOUR LITTLE LEARNING ADVENTURE</span>
+      <h1>Big smiles.<br><span class="gradient">Bright minds!</span></h1>
+      <p>A happy little quiz made just for you. Pick a topic, answer the questions, and collect your score!</p>
+    </section>
+
+    <div class="decor one">🌈</div>
+    <div class="decor two">🦋</div>
+
+    <section class="panel" id="setup">
+      <h2>Ready to play? 🚀</h2>
+      <p class="sub">Tell us your name and choose your favourite subject.</p>
+
+      <div class="fields">
+        <div class="field">
+          <label for="studentName">Your name</label>
+          <input id="studentName" maxlength="24" placeholder="e.g. Aanya">
+        </div>
+        <div class="field">
+          <label for="grade">Your class</label>
+          <select id="grade">
+            <option>Nursery</option>
+            <option selected>Class 1</option>
+            <option>Class 2</option>
+            <option>Class 3</option>
+            <option>Class 4</option>
+            <option>Class 5</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="subjects" id="subjects">
+        <button class="subject selected" data-subject="math"><span class="emoji">🔢</span>Maths</button>
+        <button class="subject" data-subject="english"><span class="emoji">📚</span>English</button>
+        <button class="subject" data-subject="science"><span class="emoji">🌱</span>Science</button>
+      </div>
+
+      <button class="primary" id="startBtn">Let's Start! 🎉</button>
+      <button class="secondary admin-toggle" id="toggleAdminBtn">Teacher Admin ➕</button>
+      <div class="note">10 fun questions • Instant feedback • No pressure!</div>
+
+      <section class="admin-panel hidden" id="adminPanel">
+        <h3>Teacher: Add class-wise questions</h3>
+        <div class="admin-form-grid">
+          <div class="admin-field">
+            <label for="adminSubject">Subject</label>
+            <select id="adminSubject">
+              <option value="math">Maths</option>
+              <option value="english">English</option>
+              <option value="science">Science</option>
+            </select>
+          </div>
+          <div class="admin-field">
+            <label for="adminClass">Class</label>
+            <select id="adminClass">
+              <option>Nursery</option>
+              <option selected>Class 1</option>
+              <option>Class 2</option>
+              <option>Class 3</option>
+              <option>Class 4</option>
+              <option>Class 5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="admin-field" style="margin-top:12px">
+          <label for="adminQuestion">Question</label>
+          <input id="adminQuestion" maxlength="120" placeholder="Type a new question here">
+        </div>
+
+        <div class="admin-form-grid" style="margin-top:12px">
+          <div class="admin-field"><label for="adminOption1">Option A</label><input id="adminOption1" maxlength="80"></div>
+          <div class="admin-field"><label for="adminOption2">Option B</label><input id="adminOption2" maxlength="80"></div>
+          <div class="admin-field"><label for="adminOption3">Option C</label><input id="adminOption3" maxlength="80"></div>
+          <div class="admin-field"><label for="adminOption4">Option D</label><input id="adminOption4" maxlength="80"></div>
+        </div>
+
+        <div class="admin-form-grid" style="margin-top:12px">
+          <div class="admin-field">
+            <label for="adminCorrect">Correct answer</label>
+            <select id="adminCorrect">
+              <option value="0">A</option>
+              <option value="1">B</option>
+              <option value="2">C</option>
+              <option value="3">D</option>
+            </select>
+          </div>
+          <div class="admin-field">
+            <label for="adminFeedback">Feedback</label>
+            <input id="adminFeedback" maxlength="120" placeholder="Short explain message">
+          </div>
+        </div>
+
+        <div class="admin-actions">
+          <button class="primary" id="saveQuestionBtn">Save Question</button>
+          <span class="admin-status" id="adminStatus">Stored only in this browser</span>
+        </div>
+
+        <p class="admin-hint">Your teacher questions are kept in local storage for this device only.</p>
+      </section>
+    </section>
+
+    <section class="panel quiz-panel hidden" id="quiz">
+      <div class="quiz-head">
+        <div>
+          <div class="question-meta" id="subjectLabel">🔢 MATHS</div>
+          <strong id="studentLabel">Little learner</strong>
+        </div>
+        <div class="top-pill">⭐ <span id="liveScore">0</span> points</div>
+      </div>
+
+      <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+      <div class="question-meta" id="questionCount">QUESTION 1 OF 10</div>
+      <h2 class="question" id="questionText">Question goes here</h2>
+      <div class="answers" id="answers"></div>
+      <div class="feedback" id="feedback" role="status"></div>
+
+      <div class="quiz-actions">
+        <button class="small-btn" id="homeBtn">← Home</button>
+        <button class="primary" id="nextBtn" style="width:auto;min-width:150px" disabled>Next ➜</button>
+      </div>
+    </section>
+
+    <section class="panel result hidden" id="result">
+      <div class="result-star" id="resultEmoji">🏆</div>
+      <h2 id="resultTitle">Amazing job!</h2>
+      <p id="resultText"></p>
+      <div class="score-circle">
+        <div>
+          <div class="score-number" id="finalScore">0/10</div>
+          <div style="font-size:.85rem;font-weight:900;color:#7666bd">YOUR SCORE</div>
+        </div>
+      </div>
+      <p id="resultMessage"></p>
+      <div class="result-actions">
+        <button class="primary" id="againBtn">Play Again 🔁</button>
+        <button class="secondary" id="changeBtn">Choose another subject</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>Made with 💜 for curious little learners.</footer>
+
+  <script src="teacher-admin.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
