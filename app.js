@@ -1,7 +1,7 @@
 const subjectInfo = {
   math: { name: 'MATHS', emoji: '🔢' },
   english: { name: 'ENGLISH', emoji: '📚' },
-  science: { name: 'SCIENCE', emoji: '🌱' }
+  Evs: { name: 'Evs', emoji: '🌱' }
 };
 
 const staticQuestionBank = {
@@ -69,7 +69,7 @@ const staticQuestionBank = {
       { q: 'Which word is a noun?', o: ['Run', 'Jump', 'Table', 'Quickly'], a: 2, e: 'Table is a noun because it is a thing.' }
     ]
   },
-  science: {
+  Evs: {
     Nursery: [
       { q: 'Which animal has wings?', o: ['Horse', 'Duck', 'Fish', 'Cat'], a: 1, e: 'A duck has wings and can fly.' },
       { q: 'What do we breathe in?', o: ['Water', 'Air', 'Sand', 'Rocks'], a: 1, e: 'We breathe in air to stay alive.' },
