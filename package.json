@@ -1,0 +1,26 @@
+{
+  "name": "quiz-based-system",
+  "version": "1.0.0",
+  "description": "A responsive, beginner-friendly quiz website for Nursery–Class 5 students.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --check app.js && node --check teacher-admin.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RohitSehrawat07/Quiz-Based-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RohitSehrawat07/Quiz-Based-System/issues"
+  },
+  "homepage": "https://github.com/RohitSehrawat07/Quiz-Based-System#readme",
+  "dependencies": {
+    "express": "^5.3.0",
+    "socket.io": "^4.8.4"
+  }
+}

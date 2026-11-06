@@ -16,7 +16,7 @@
     <section class="hero" id="hero">
       <span class="eyebrow">✨ YOUR LITTLE LEARNING ADVENTURE</span>
       <h1>Big smiles.<br><span class="gradient">Bright minds!</span></h1>
-      <p>A happy little quiz made just for you. Pick a topic, answer the questions, and collect your score!</p>
+      <p>A little fun quiz made just for you. Pick a topic, answer the questions, and collect your score!</p>
     </section>
 
     <div class="decor one">🌈</div>
@@ -47,11 +47,46 @@
       <div class="subjects" id="subjects">
         <button class="subject selected" data-subject="math"><span class="emoji">🔢</span>Maths</button>
         <button class="subject" data-subject="english"><span class="emoji">📚</span>English</button>
-        <button class="subject" data-subject="Evs"><span class="emoji">🌱</span>Evs</button>
+        <button class="subject" data-subject="science"><span class="emoji">🌱</span>Science</button>
+      </div>
+
+      <div class="mode-row" aria-label="Quiz difficulty">
+        <button class="mode selected" data-mode="easy">Easy ⚡</button>
+        <button class="mode" data-mode="normal">Normal 🎯</button>
+        <button class="mode" data-mode="challenge">Challenge 🏁</button>
+      </div>
+
+      <div class="friend-row">
+        <button class="secondary friend-btn" id="friendModeBtn" type="button">Play with a friend 👯</button>
+      </div>
+
+      <div class="online-panel" id="onlineRoomPanel">
+        <div class="online-title">🌐 Online play</div>
+        <div class="online-actions">
+          <button class="secondary" id="createRoomBtn" type="button">Create room</button>
+          <button class="secondary" id="joinRoomBtn" type="button">Join room</button>
+        </div>
+        <div class="field" style="margin-top: 12px;">
+          <label for="roomCodeInput">Room code</label>
+          <input id="roomCodeInput" maxlength="8" placeholder="e.g. ABC123">
+        </div>
+        <div class="online-status" id="onlineStatus">Waiting for a room code or creating a new one.</div>
+      </div>
+
+      <div class="field hidden" id="friendNameWrap" style="margin-top: 8px;">
+        <label for="friendName">Friend's name</label>
+        <input id="friendName" maxlength="24" placeholder="e.g. Riya">
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-box"><span>🏆 Best</span><strong id="bestScoreStat">0</strong></div>
+        <div class="stat-box"><span>🎮 Games</span><strong id="gamesPlayedStat">0</strong></div>
+        <div class="stat-box"><span>🔥 Streak</span><strong id="streakStat">0</strong></div>
       </div>
 
       <button class="primary" id="startBtn">Let's Start! 🎉</button>
       <button class="secondary admin-toggle" id="toggleAdminBtn">Teacher Admin ➕</button>
+      <div class="mode-status" id="modeStatus">Mode: Easy • Solo</div>
       <div class="note">10 fun questions • Instant feedback • No pressure!</div>
 
       <section class="admin-panel hidden" id="adminPanel">
@@ -62,7 +97,7 @@
             <select id="adminSubject">
               <option value="math">Maths</option>
               <option value="english">English</option>
-              <option value="Evs">Evs</option>
+              <option value="science">Science</option>
             </select>
           </div>
           <div class="admin-field">
@@ -120,8 +155,24 @@
         <div>
           <div class="question-meta" id="subjectLabel">🔢 MATHS</div>
           <strong id="studentLabel">Little learner</strong>
+          <div class="versus-pill hidden" id="versusPill">1 vs 2</div>
         </div>
-        <div class="top-pill">⭐ <span id="liveScore">0</span> points</div>
+        <div class="status-cluster">
+          <span class="top-pill timer-pill">⏱️ <span id="timerValue">20s</span></span>
+          <span class="top-pill">⭐ <span id="liveScore">0</span> points</span>
+        </div>
+      </div>
+
+      <div class="online-scoreboard hidden" id="onlineScoreboard">
+        <div class="score-card">
+          <span class="score-card-label" id="onlinePlayerOneName">Player 1</span>
+          <strong class="score-card-value" id="onlinePlayerOneScore">0</strong>
+        </div>
+        <div class="score-vs">VS</div>
+        <div class="score-card">
+          <span class="score-card-label" id="onlinePlayerTwoName">Player 2</span>
+          <strong class="score-card-value" id="onlinePlayerTwoScore">0</strong>
+        </div>
       </div>
 
       <div class="progress-wrap"><div class="progress" id="progress"></div></div>
@@ -138,6 +189,7 @@
 
     <section class="panel result hidden" id="result">
       <div class="result-star" id="resultEmoji">🏆</div>
+      <div class="winner-banner hidden" id="winnerBanner">🏆 Winner!</div>
       <h2 id="resultTitle">Amazing job!</h2>
       <p id="resultText"></p>
       <div class="score-circle">
@@ -146,16 +198,35 @@
           <div style="font-size:.85rem;font-weight:900;color:#7666bd">YOUR SCORE</div>
         </div>
       </div>
+      <div class="result-badges">
+        <span class="result-badge">🏆 Best <strong id="resultBest">0</strong>%</span>
+        <span class="result-badge">🔥 Streak <strong id="resultStreak">0</strong></span>
+      </div>
       <p id="resultMessage"></p>
       <div class="result-actions">
         <button class="primary" id="againBtn">Play Again 🔁</button>
         <button class="secondary" id="changeBtn">Choose another subject</button>
       </div>
     </section>
+
+    <section class="panel leaderboard-panel" id="leaderboardPanel">
+      <div class="leaderboard-header">
+        <div>
+          <div class="question-meta">♟️ LEADERBOARD</div>
+          <h2>Student Performance Board</h2>
+        </div>
+        <div class="status-cluster">
+          <div class="top-pill" id="leaderboardSummary">Top 5</div>
+          <button class="secondary reset-btn" id="resetLeaderboardBtn" type="button">Reset Board</button>
+        </div>
+      </div>
+      <div class="leaderboard-board" id="leaderboardBoard"></div>
+    </section>
   </main>
 
   <footer>Made with 💜 for curious little learners.</footer>
 
+  <script src="/socket.io/socket.io.js"></script>
   <script src="teacher-admin.js"></script>
   <script src="app.js"></script>
 </body>
