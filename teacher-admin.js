@@ -1,11 +1,19 @@
 const STORAGE_KEY = 'brightFutureCustomQuestions';
 
 window.teacherAdmin = {
+  setStatus(message, color) {
+    const statusText = document.getElementById('adminStatus');
+    if (!statusText) return;
+    statusText.textContent = message;
+    statusText.style.color = color;
+  },
+
   loadCustomQuestions() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       return raw ? JSON.parse(raw) : {};
     } catch (error) {
+      this.setStatus("Could not load saved questions. Check this browser's storage settings.", '#b93c5a');
       return {};
     }
   },
@@ -22,7 +30,7 @@ window.teacherAdmin = {
       if (!merged[subject]) return;
       Object.keys(custom[subject] || {}).forEach((grade) => {
         if (!Array.isArray(custom[subject][grade])) return;
-        merged[subject][grade] = [...(merged[subject][grade] || []), ...custom[subject][grade]];
+        merged[subject][grade] = [...custom[subject][grade], ...(merged[subject][grade] || [])];
       });
     });
 
@@ -50,11 +58,9 @@ window.teacherAdmin = {
       ];
       const answer = Number(document.getElementById('adminCorrect').value);
       const feedback = document.getElementById('adminFeedback').value.trim() || 'Good work!';
-      const statusText = document.getElementById('adminStatus');
 
       if (!question || options.some((option) => !option)) {
-        statusText.textContent = 'Please fill in the question and all 4 options.';
-        statusText.style.color = '#b93c5a';
+        this.setStatus('Please fill in the question and all 4 options.', '#b93c5a');
         return;
       }
 
@@ -69,11 +75,15 @@ window.teacherAdmin = {
         e: feedback
       });
 
-      this.saveCustomQuestions(custom);
+      try {
+        this.saveCustomQuestions(custom);
+      } catch (error) {
+        this.setStatus("Could not save this question. Check this browser's storage settings.", '#b93c5a');
+        return;
+      }
       document.dispatchEvent(new CustomEvent('teacher:questions-saved'));
 
-      statusText.textContent = `Saved for ${subject.toUpperCase()} • ${chosenClass}`;
-      statusText.style.color = '#177b5c';
+      this.setStatus(`Saved for ${subject.toUpperCase()} • ${chosenClass}. It will appear first in that quiz.`, '#177b5c');
 
       ['adminQuestion', 'adminOption1', 'adminOption2', 'adminOption3', 'adminOption4', 'adminFeedback'].forEach((id) => {
         document.getElementById(id).value = '';
