@@ -178,16 +178,16 @@ const staticQuestionBank = {
       { q: 'How many sides does a pentagon have?', o: ['4', '5', '6', '7'], a: 1, e: 'A pentagon has 5 sides.' }
     ],
     'Class 4': [
-      { q: 'What is 8 + 7?', o: ['14', '15', '16', '17'], a: 1, e: '8 + 7 = 15.' },
-      { q: 'Which number is even?', o: ['3', '5', '8', '9'], a: 2, e: '8 is even because it can be paired.' },
-      { q: 'How many sides does a triangle have?', o: ['2', '4', '3', '5'], a: 2, e: 'A triangle has 3 sides.' },
-      { q: 'What is 25 + 18?', o: ['33', '34', '43', '44'], a: 2, e: '25 + 18 = 43.' },
-      { q: 'What is 96 - 27?', o: ['69', '71', '73', '79'], a: 0, e: '96 - 27 = 69.' },
-      { q: 'What is 7 x 6?', o: ['36', '42', '48', '54'], a: 1, e: '7 x 6 = 42.' },
-      { q: 'Which is a factor of 12?', o: ['5', '6', '7', '9'], a: 1, e: '6 is a factor of 12.' },
-      { q: 'How many hours are in 2 days?', o: ['24', '36', '48', '72'], a: 2, e: '2 days = 48 hours.' },
-      { q: 'What is 1/2 of 20?', o: ['5', '8', '10', '12'], a: 2, e: 'Half of 20 is 10.' },
-      { q: 'Which fraction is bigger: 1/3 or 1/2?', o: ['1/3', '1/2', 'They are equal', 'None'], a: 1, e: '1/2 is bigger than 1/3.' }
+      { q: 'What is the place value of 6 in 4,625?', o: ['6', '60', '600', '6000'], a: 2, e: 'The 6 is in the hundreds place, so its value is 600.' },
+      { q: 'What is 2,345 + 1,256?', o: ['3,501', '3,601', '3,701', '3,801'], a: 1, e: '2,345 + 1,256 = 3,601.' },
+      { q: 'What is 5,000 − 2,345?', o: ['2,555', '2,655', '2,755', '2,855'], a: 1, e: '5,000 minus 2,345 equals 2,655.' },
+      { q: 'What is 125 × 8?', o: ['900', '950', '1,000', '1,100'], a: 2, e: '125 × 8 = 1,000.' },
+      { q: 'What is 864 ÷ 8?', o: ['108', '118', '128', '98'], a: 0, e: '864 divided by 8 is 108.' },
+      { q: 'What is the LCM of 8 and 12?', o: ['16', '20', '24', '36'], a: 2, e: 'The least common multiple of 8 and 12 is 24.' },
+      { q: 'What is 1/2 + 1/4?', o: ['1/4', '2/4', '3/4', '1'], a: 2, e: '1/2 + 1/4 = 2/4 + 1/4 = 3/4.' },
+      { q: 'How many sides does a hexagon have?', o: ['4', '5', '6', '8'], a: 2, e: 'A hexagon has 6 sides.' },
+      { q: 'How many centimetres are there in 3 metres?', o: ['30 cm', '100 cm', '200 cm', '300 cm'], a: 3, e: '1 metre = 100 cm, so 3 metres = 300 cm.' },
+      { q: 'A shopkeeper has 120 apples. He packs 10 apples in each box. How many boxes does he need?', o: ['10', '11', '12', '15'], a: 2, e: '120 ÷ 10 = 12 boxes.' }
     ],
     'Class 5': [
       { q: 'What is 12 + 9?', o: ['20', '21', '22', '23'], a: 1, e: '12 + 9 = 21.' },
