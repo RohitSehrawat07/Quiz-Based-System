@@ -382,6 +382,57 @@ h1 {
   gap: 12px;
   margin-top: 16px;
 }
+.admin-manager {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.admin-class-section {
+  background: #fff;
+  border: 1px solid #e6dcff;
+  border-radius: 16px;
+  padding: 12px;
+}
+.admin-class-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #4d3e88;
+  font-weight: 900;
+}
+.admin-question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.admin-question-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: #f8f4ff;
+  border: 1px solid #ebdefd;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.admin-question-text {
+  flex: 1;
+  color: #3a4263;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.admin-empty {
+  background: #f5f1ff;
+  border: 1px dashed #d9ccff;
+  border-radius: 12px;
+  padding: 12px;
+  color: #6d7281;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
 .admin-status { font-size: 0.82rem; color: #5b4ca9; font-weight: 800; }
 .admin-hint { margin-top: 10px; color: #6d7281; font-size: 0.83rem; }
 .quiz-panel { max-width: 780px; }
