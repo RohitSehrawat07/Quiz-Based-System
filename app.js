@@ -406,12 +406,21 @@ function updateWinnerBanner(title, visible = true) {
 }
 
 function connectSocket() {
-  if (socket) return;
+  if (socket) return socket;
 
-  socket = io();
+  if (typeof window.io !== 'function') {
+    setOnlineStatus('Online rooms need the app server. Run npm start, then open http://localhost:3000.');
+    return null;
+  }
+
+  socket = window.io();
 
   socket.on('connect', () => {
     console.log('Connected to Bright Future multiplayer server');
+  });
+
+  socket.on('connect_error', () => {
+    setOnlineStatus('Could not connect to the room server. Make sure it is running with npm start.');
   });
 
   socket.on('room:created', ({ code, playerId }) => {
@@ -488,6 +497,8 @@ function connectSocket() {
   socket.on('room:error', ({ message }) => {
     setOnlineStatus(message);
   });
+
+  return socket;
 }
 
 function resetResultBanner() {
@@ -495,15 +506,21 @@ function resetResultBanner() {
 }
 
 function createOnlineRoom() {
-  connectSocket();
+  const client = connectSocket();
+  if (!client) return;
+
   onlineMode = true;
+  setOnlineStatus('Connecting to create your room...');
   const formName = $('studentName').value.trim() || 'Little Learner';
-  socket.emit('room:create', {
+  const createRoom = () => client.emit('room:create', {
     name: formName,
     grade: $('grade').value,
     subject: selected,
     mode: currentMode
   });
+
+  if (client.connected) createRoom();
+  else client.once('connect', createRoom);
 }
 
 function joinOnlineRoom() {
@@ -513,15 +530,21 @@ function joinOnlineRoom() {
     return;
   }
 
-  connectSocket();
+  const client = connectSocket();
+  if (!client) return;
+
   onlineMode = true;
-  socket.emit('room:join', {
+  setOnlineStatus('Connecting to join the room...');
+  const joinRoom = () => client.emit('room:join', {
     code: roomCode,
     name: $('studentName').value.trim() || 'Little Learner',
     grade: $('grade').value,
     subject: selected,
     mode: currentMode
   });
+
+  if (client.connected) joinRoom();
+  else client.once('connect', joinRoom);
 }
 
 function finishOnlineQuiz() {
@@ -674,15 +697,12 @@ const joinRoomBtn = $('joinRoomBtn');
 
 if (createRoomBtn) {
   createRoomBtn.addEventListener('click', () => {
-    onlineMode = true;
-    setOnlineStatus('Creating a live room for two players...');
     createOnlineRoom();
   });
 }
 
 if (joinRoomBtn) {
   joinRoomBtn.addEventListener('click', () => {
-    onlineMode = true;
     joinOnlineRoom();
   });
 }
